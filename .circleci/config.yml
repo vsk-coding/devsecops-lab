@@ -18,7 +18,6 @@ jobs:
       - run:
           name: zap-test
           command: |      
-            docker images
             echo $CIRCLE_BRANCH
             docker run --net zapnet --name labimg -d -p 80:80 $CIRCLE_BRANCH
             docker run --net zapnet -t owasp/zap2docker-weekly zap-full-scan.py -t http://$(ip -f inet -o addr show docker0 | awk '{print $4}' | cut -d '/' -f 1)/xvwa/
